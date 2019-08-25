@@ -1,9 +1,11 @@
 #include <iostream>
-
+#include <vector>
+#include <algorithm>
 using namespace std;
 int n, m;
-bool check[9];
 int arr[9];
+int check[9];
+vector<int> v;
 void permu(int cnt){
     //cout <<"cnt : "<< cnt<<endl;
     if(cnt == m){
@@ -14,20 +16,23 @@ void permu(int cnt){
         return ;
     }
 
-    for(int i=1; i<=n; i++){
-        if(check[i]) continue;
-        if(i >arr[cnt]){
-            check[i] = true;
-            arr[cnt+1] = i;
+    for(int i=0; i<n; i++){
+        if(v[i]>= arr[cnt]){
+            arr[cnt+1] = v[i];
             permu(cnt+1);
-            check[i] = false;        
-
         }
+            
     }
     return;
 }
 
 int main(){
+    int t;
     cin>> n>>m;
+    for(int i=0; i<n; i++){
+        cin>> t;
+        v.push_back(t);
+    }
+    sort(v.begin(), v.end());
     permu(0);
 }

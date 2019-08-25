@@ -2,7 +2,6 @@
 
 using namespace std;
 int n, m;
-bool check[9];
 int arr[9];
 void permu(int cnt){
     //cout <<"cnt : "<< cnt<<endl;
@@ -15,14 +14,9 @@ void permu(int cnt){
     }
 
     for(int i=1; i<=n; i++){
-        if(check[i]) continue;
-        if(i >arr[cnt]){
-            check[i] = true;
-            arr[cnt+1] = i;
-            permu(cnt+1);
-            check[i] = false;        
+        arr[cnt+1] = i;
+        permu(cnt+1);
 
-        }
     }
     return;
 }
