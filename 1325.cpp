@@ -1,11 +1,12 @@
 #include <iostream>
+#include <cstdio>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
 vector<int> arr[10001];
 int memo[10001];
-
+int dp[10001];
 bool comp(pair<int, int> &a , pair<int,int> b){
     if(a.first == b.first){return a.second<b.second ;}
     return a.first>b.first;
@@ -13,16 +14,18 @@ bool comp(pair<int, int> &a , pair<int,int> b){
 int count;
 
 int DFS(int a){
+    if(dp[a]>0){return dp[a];}
     int count = 0;
     for(int i=0; i<10001; i++){memo[i] =0;}
     memo[a] = 1;
     count++;
     for( int k : arr[a]){
         if(memo[k]!=1){
-            count += DFS(k);
+            dp[k] = DFS(k);
+            count += dp[k];
         }
     }
-    return count;
+    return dp[a] = count;
 }
 
 int main(){
@@ -32,7 +35,7 @@ int main(){
     cin>> n>>m;
 
     for(int i=0; i< m; i++){
-        cin >> a >> b;
+        scanf("%d%d",&a,&b);
         arr[b].push_back(a);
     }
     int max_cnt = 0;
