@@ -11,7 +11,7 @@ int gcd(int a, int b) {
 }
 int main() {
 	int m;
-	int sum = 0;
+	long long sum = 0;
 	int cnt;
 	int cnt_in;
 	cin >> cnt;
@@ -20,9 +20,9 @@ int main() {
 		for (int j = 0; j < cnt_in; j++) {
 			cin >> arr[j];
 		}
-		for (int a = 1; a < cnt_in; a++) {
-			for (int b = a - 1; b >= 0; b--) {
-				sum += gcd(arr[a], arr[b]);
+		for(int j=0; j<cnt_in; j++){
+			for(int k=j+1; k<cnt_in; k++){
+				sum+=gcd(arr[k],arr[j]);
 			}
 		}
 		cout << sum << endl;
