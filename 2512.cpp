@@ -37,3 +37,4 @@ int main(){
     }
     cout << result<<endl;
 }
+// 손으로 직접 풀어보고 코드를 작성하자.
