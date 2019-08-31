@@ -1,24 +1,27 @@
 #include <iostream>
 #include <stack>
-
+#include <string>
 using namespace std;
 
 int main(){
-    int n,a;
+    int n,a, cnt;
     stack<int> s;
-    int cnt = 1
-    while(cnt<=n){
+    string ans;
+    cin >> n;
+    cnt =1;
+    while(n--){
         cin >> a;
-        while(a!=cnt){
-            cnt++;
+        while(a>=cnt){
             s.push(cnt);
-            cout <<"+\n";
-        }
-        if(a==cnt){
-            s.pop();
+            ans+="+\n";
             cnt++;
-            cout<<"-\n";
+        }
+        if(s.top()==a){
+            s.pop();
+            ans+="-\n";
+        }else{
+            cout <<"NO"<<endl;return 0;
         }
     }
-
+    cout <<ans<<endl;
 }
